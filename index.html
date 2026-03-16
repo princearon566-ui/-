@@ -9,31 +9,102 @@
     <style>
         body {
             font-family: 'Assistant', sans-serif;
-            background: radial-gradient(circle at center, #1a1a2e 0%, #0f0f1a 100%);
+            background: #0a0b1e; /* Deep dark blue like your image */
             color: #e0e0e0;
             min-height: 100vh;
             margin: 0;
-            overflow-x: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            background: rgba(20, 20, 35, 0.8);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 500px;
         }
 
+        .glow-text {
+            text-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
+        }
+
+        /* This adds the blue line from your design */
         .futuristic-border {
             position: relative;
+            padding-bottom: 20px;
         }
 
         .futuristic-border::after {
             content: '';
             position: absolute;
-            bottom: -2px;
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00d2ff, transparent);
+            border-radius: 2px;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.3s;
+        }
+
+        /* Adds the brackets automatically to the text */
+        .question-text::before { content: "["; margin-left: 4px; color: rgba(255,255,255,0.4); }
+        .question-text::after { content: "]"; margin-right: 4px; color: rgba(255,255,255,0.4); }
+
+        .answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: #00d2ff;
+            text-align: center;
+        }
+
+        .accordion-item.active .answer {
+            max-height: 50px;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body class="p-4">
+
+    <div class="glass-card p-6 md:p-10 space-y-6">
+        
+        <header class="text-center space-y-2">
+            <h1 class="text-3xl font-bold glow-text text-white">פאר אלא נייגעריגע מענטשן</h1>
+            <p class="text-sm text-gray-400 futuristic-border">
+                דא קענט איר טרעפן די תירוצים צו אלע אייערע שאלות
+            </p>
+        </header>
+
+        <div class="space-y-0">
+            <div class="accordion-item py-4 cursor-pointer" onclick="this.classList.toggle('active')">
+                <div class="question-text text-center text-lg">דו לערנסט אין ארץ ישראל</div>
+                <div class="answer font-bold">יא</div>
+            </div>
+
+            <div class="accordion-item py-4 cursor-pointer" onclick="this.classList.toggle('active')">
+                <div class="question-text text-center text-lg">ביסט געפארן דורך מצרים</div>
+                <div class="answer font-bold">יא</div>
+            </div>
+            
+            </div>
+
+        <div class="pt-4">
+            <p class="text-right text-xs text-gray-500 mb-2">האט איר נאך א פראגע?</p>
+            <textarea class="w-full bg-black/30 border border-white/10 rounded-xl p-3 text-white text-right focus:border-cyan-400 outline-none transition" rows="3" placeholder="שרייבט דא..."></textarea>
+            <button class="w-full mt-4 bg-gradient-to-r from-cyan-500 to-blue-600 py-3 rounded-xl font-bold text-white shadow-lg shadow-cyan-900/20 active:scale-95 transition">שיקן שאלה</button>
+        </div>
+    </div>
+
+</body>
+</html>
             width: 50px;
             height: 2px;
             background: linear-gradient(90deg, transparent, #00d2ff, transparent);
